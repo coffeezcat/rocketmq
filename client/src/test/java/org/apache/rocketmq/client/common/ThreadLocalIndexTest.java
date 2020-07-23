@@ -18,7 +18,7 @@ package org.apache.rocketmq.client.common;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class ThreadLocalIndexTest {
     @Test

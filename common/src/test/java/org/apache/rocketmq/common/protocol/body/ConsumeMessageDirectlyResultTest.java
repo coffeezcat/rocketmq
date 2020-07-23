@@ -20,7 +20,7 @@ package org.apache.rocketmq.common.protocol.body;
 import org.apache.rocketmq.remoting.protocol.RemotingSerializable;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 
 public class ConsumeMessageDirectlyResultTest {

@@ -266,7 +266,7 @@ public class HAConnection {
                         if (!this.lastWriteOver)
                             continue;
                     }
-
+                    //向里面写数据
                     SelectMappedBufferResult selectResult =
                         HAConnection.this.haService.getDefaultMessageStore().getCommitLogData(this.nextTransferFromWhere);
                     if (selectResult != null) {
@@ -327,6 +327,9 @@ public class HAConnection {
             HAConnection.log.info(this.getServiceName() + " service end");
         }
 
+        /**
+         * 真实数据传输
+         * */
         private boolean transferData() throws Exception {
             int writeSizeZeroTimes = 0;
             // Write Header

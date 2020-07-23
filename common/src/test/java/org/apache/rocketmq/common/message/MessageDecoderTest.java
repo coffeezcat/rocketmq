@@ -26,7 +26,7 @@ import java.nio.ByteBuffer;
 import java.util.Map;
 
 import static org.apache.rocketmq.common.message.MessageDecoder.createMessageId;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class MessageDecoderTest {
 

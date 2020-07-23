@@ -23,7 +23,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * Created by guoyao on 2019/2/18.

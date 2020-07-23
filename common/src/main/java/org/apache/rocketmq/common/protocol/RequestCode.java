@@ -19,6 +19,7 @@ package org.apache.rocketmq.common.protocol;
 
 public class RequestCode {
 
+    //生产者发送小消息
     public static final int SEND_MESSAGE = 10;
 
     public static final int PULL_MESSAGE = 11;
@@ -28,6 +29,7 @@ public class RequestCode {
     public static final int QUERY_CONSUMER_OFFSET = 14;
     public static final int UPDATE_CONSUMER_OFFSET = 15;
     public static final int UPDATE_AND_CREATE_TOPIC = 17;
+
     public static final int GET_ALL_TOPIC_CONFIG = 21;
     public static final int GET_TOPIC_CONFIG_LIST = 22;
 
@@ -52,6 +54,7 @@ public class RequestCode {
 
     public static final int UNREGISTER_CLIENT = 35;
 
+    //消费者回传信息
     public static final int CONSUMER_SEND_MSG_BACK = 36;
 
     public static final int END_TRANSACTION = 37;
@@ -86,9 +89,13 @@ public class RequestCode {
 
     public static final int DELETE_KV_CONFIG = 102;
 
+    //注册broker
     public static final int REGISTER_BROKER = 103;
 
+    //取消broker
     public static final int UNREGISTER_BROKER = 104;
+
+    //获取路由信息
     public static final int GET_ROUTEINTO_BY_TOPIC = 105;
 
     public static final int GET_BROKER_CLUSTER_INFO = 106;
@@ -171,7 +178,7 @@ public class RequestCode {
      * get config from name server
      */
     public static final int GET_NAMESRV_CONFIG = 319;
-
+    //批量消息
     public static final int SEND_BATCH_MESSAGE = 320;
 
     public static final int QUERY_CONSUME_QUEUE = 321;

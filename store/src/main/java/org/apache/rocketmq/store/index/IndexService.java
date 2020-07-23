@@ -219,6 +219,7 @@ public class IndexService {
                     return;
             }
 
+            //唯一key
             if (req.getUniqKey() != null) {
                 indexFile = putKey(indexFile, msg, buildKey(topic, req.getUniqKey()));
                 if (indexFile == null) {
@@ -226,7 +227,7 @@ public class IndexService {
                     return;
                 }
             }
-
+            //多个key
             if (keys != null && keys.length() > 0) {
                 String[] keyset = keys.split(MessageConst.KEY_SEPARATOR);
                 for (int i = 0; i < keyset.length; i++) {

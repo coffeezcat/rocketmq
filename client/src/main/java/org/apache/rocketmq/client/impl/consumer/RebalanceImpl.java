@@ -43,6 +43,7 @@ import org.apache.rocketmq.common.protocol.heartbeat.SubscriptionData;
 /**
  * This class will be removed in 2022, and a better implementation {@link RebalanceLitePullImpl} is recommend to use
  * in the scenario of actively pulling messages.
+ * 每个 consumer group 给予
  */
 @Deprecated
 public abstract class RebalanceImpl {
@@ -240,6 +241,8 @@ public abstract class RebalanceImpl {
         return subscriptionInner;
     }
 
+
+    //根据话题再均衡
     private void rebalanceByTopic(final String topic, final boolean isOrder) {
         switch (messageModel) {
             case BROADCASTING: {
@@ -330,6 +333,9 @@ public abstract class RebalanceImpl {
         }
     }
 
+    /**
+     * 通过topic再均衡的时候会去拉一次消息
+     * */
     private boolean updateProcessQueueTableInRebalance(final String topic, final Set<MessageQueue> mqSet,
         final boolean isOrder) {
         boolean changed = false;

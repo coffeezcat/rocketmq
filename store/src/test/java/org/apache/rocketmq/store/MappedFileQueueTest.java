@@ -24,7 +24,7 @@ import org.apache.rocketmq.common.UtilAll;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class MappedFileQueueTest {
     @Test

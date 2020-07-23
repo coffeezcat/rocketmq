@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.rocketmq.remoting.netty.RequestTask;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BrokerFastFailureTest {
     @Test

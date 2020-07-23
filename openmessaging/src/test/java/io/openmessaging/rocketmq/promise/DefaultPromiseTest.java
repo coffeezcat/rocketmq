@@ -23,7 +23,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 public class DefaultPromiseTest {

@@ -22,7 +22,7 @@ import org.apache.rocketmq.remoting.protocol.RemotingSerializable;
 import org.assertj.core.util.Sets;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class SubscriptionDataTest {
 

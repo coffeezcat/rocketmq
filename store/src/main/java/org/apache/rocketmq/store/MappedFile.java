@@ -266,13 +266,13 @@ public class MappedFile extends ReferenceResource {
     }
 
     /**
+     * @param flushLeastPages 本次刷新到磁盘的最小页数
      * @return The current flushed position
      */
     public int flush(final int flushLeastPages) {
         if (this.isAbleToFlush(flushLeastPages)) {
             if (this.hold()) {
                 int value = getReadPosition();
-
                 try {
                     //We only append data to fileChannel or mappedByteBuffer, never both.
                     if (writeBuffer != null || this.fileChannel.position() != 0) {
@@ -294,6 +294,10 @@ public class MappedFile extends ReferenceResource {
         return this.getFlushedPosition();
     }
 
+    /**
+     * 提交:writeBuffer->fileChanel
+     * 刷新:fileChannel->磁盘
+     * */
     public int commit(final int commitLeastPages) {
         if (writeBuffer == null) {
             //no need to commit data to file channel, so just regard wrotePosition as committedPosition.
@@ -358,6 +362,7 @@ public class MappedFile extends ReferenceResource {
             return true;
         }
 
+        //虚拟页->判断提交的数据是否最小页
         if (commitLeastPages > 0) {
             return ((write / OS_PAGE_SIZE) - (flush / OS_PAGE_SIZE)) >= commitLeastPages;
         }

@@ -32,7 +32,9 @@ public class IndexFile {
     private static int hashSlotSize = 4;
     private static int indexSize = 20;
     private static int invalidIndex = 0;
+    //默认500w
     private final int hashSlotNum;
+    //默认2000w
     private final int indexNum;
     private final MappedFile mappedFile;
     private final FileChannel fileChannel;
@@ -190,7 +192,10 @@ public class IndexFile {
         final long begin, final long end, boolean lock) {
         if (this.mappedFile.hold()) {
             int keyHash = indexKeyHashMethod(key);
+            //所在的hash槽
             int slotPos = keyHash % this.hashSlotNum;
+
+            //物理地址 每个槽的大小四个字节
             int absSlotPos = IndexHeader.INDEX_HEADER_SIZE + slotPos * hashSlotSize;
 
             FileLock fileLock = null;
@@ -199,7 +204,7 @@ public class IndexFile {
                     // fileLock = this.fileChannel.lock(absSlotPos,
                     // hashSlotSize, true);
                 }
-
+                //获取值得位置
                 int slotValue = this.mappedByteBuffer.getInt(absSlotPos);
                 // if (fileLock != null) {
                 // fileLock.release();
@@ -214,14 +219,18 @@ public class IndexFile {
                             break;
                         }
 
+                        //计算值的物理地址
                         int absIndexPos =
                             IndexHeader.INDEX_HEADER_SIZE + this.hashSlotNum * hashSlotSize
                                 + nextIndexToRead * indexSize;
 
+                        //key
                         int keyHashRead = this.mappedByteBuffer.getInt(absIndexPos);
+                        //物理便宜位置
                         long phyOffsetRead = this.mappedByteBuffer.getLong(absIndexPos + 4);
-
+                        //时间
                         long timeDiff = (long) this.mappedByteBuffer.getInt(absIndexPos + 4 + 8);
+                        //前一个
                         int prevIndexRead = this.mappedByteBuffer.getInt(absIndexPos + 4 + 8 + 4);
 
                         if (timeDiff < 0) {
@@ -230,6 +239,7 @@ public class IndexFile {
 
                         timeDiff *= 1000L;
 
+                        //判断时间是否过期
                         long timeRead = this.indexHeader.getBeginTimestamp() + timeDiff;
                         boolean timeMatched = (timeRead >= begin) && (timeRead <= end);
 
@@ -260,5 +270,10 @@ public class IndexFile {
                 this.mappedFile.release();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("gdejicbegh".hashCode());
+        System.out.println("hgebcijedg".hashCode());
     }
 }

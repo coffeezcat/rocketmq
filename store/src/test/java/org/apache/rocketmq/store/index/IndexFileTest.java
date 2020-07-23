@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.rocketmq.common.UtilAll;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class IndexFileTest {
     private final int HASH_SLOT_NUM = 100;

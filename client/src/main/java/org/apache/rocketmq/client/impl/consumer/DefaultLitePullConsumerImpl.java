@@ -331,6 +331,7 @@ public class DefaultLitePullConsumerImpl implements MQConsumerInner {
             }, 1000 * 10, this.getDefaultLitePullConsumer().getTopicMetadataCheckIntervalMillis(), TimeUnit.MILLISECONDS);
     }
 
+
     private void operateAfterRunning() throws MQClientException {
         // If subscribe function invoke before start function, then update topic subscribe info after initialization.
         if (subscriptionType == SubscriptionType.SUBSCRIBE) {
@@ -686,6 +687,7 @@ public class DefaultLitePullConsumerImpl implements MQConsumerInner {
         return this.mQClientFactory.getMQAdminImpl().searchOffset(mq, timestamp);
     }
 
+    //拉取消息的任务
     public class PullTaskImpl implements Runnable {
         private final MessageQueue messageQueue;
         private volatile boolean cancelled = false;

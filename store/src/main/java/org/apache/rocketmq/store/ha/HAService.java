@@ -52,6 +52,7 @@ public class HAService {
     private final DefaultMessageStore defaultMessageStore;
 
     private final WaitNotifyObject waitNotifyObject = new WaitNotifyObject();
+
     private final AtomicLong push2SlaveMaxOffset = new AtomicLong(0);
 
     private final GroupTransferService groupTransferService;
@@ -155,6 +156,7 @@ public class HAService {
 
     /**
      * Listens to slave connections to create {@link HAConnection}.
+     * 用于接收并且建立链接
      */
     class AcceptSocketService extends ServiceThread {
         private final SocketAddress socketAddressListen;
@@ -195,6 +197,7 @@ public class HAService {
 
         /**
          * {@inheritDoc}
+         * 监听client
          */
         @Override
         public void run() {
@@ -209,7 +212,7 @@ public class HAService {
                         for (SelectionKey k : selected) {
                             if ((k.readyOps() & SelectionKey.OP_ACCEPT) != 0) {
                                 SocketChannel sc = ((ServerSocketChannel) k.channel()).accept();
-
+                                //维持长链接
                                 if (sc != null) {
                                     HAService.log.info("HAService receive new connection, "
                                         + sc.socket().getRemoteSocketAddress());
@@ -249,6 +252,7 @@ public class HAService {
 
     /**
      * GroupTransferService Service
+     * 用来校验传输是否完成
      */
     class GroupTransferService extends ServiceThread {
 
